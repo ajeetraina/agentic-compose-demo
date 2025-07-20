@@ -97,7 +97,7 @@ export default function Home() {
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              placeholder="collabnix"
+              placeholder="ajeetraina"
               style={{
                 flex: 1,
                 padding: '12px 16px',
