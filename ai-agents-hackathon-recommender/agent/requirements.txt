@@ -1,0 +1,18 @@
+# Core web framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+
+# HTTP clients
+httpx==0.25.2
+requests==2.31.0
+
+# Configuration and data handling
+pyyaml==6.0.1
+pydantic==2.5.0
+python-dotenv==1.0.0
+
+# Logging
+structlog==23.2.0
+
+# Async support - compatible with FastAPI
+anyio>=3.7.1,<4.0.0

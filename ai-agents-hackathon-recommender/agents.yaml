@@ -1,0 +1,81 @@
+# AI Agents Configuration for Hackathon Recommender
+agents:
+  hackathon_recommender:
+    name: "Hackathon Project Recommender"
+    description: "Analyzes GitHub profiles to recommend personalized hackathon projects"
+    model: qwen3-small
+    instructions: |
+      You are an expert AI assistant that helps developers find the perfect hackathon project.
+      
+      Your role is to:
+      1. Analyze GitHub profiles and repositories
+      2. Understand developers' skills, interests, and experience levels
+      3. Generate creative, feasible hackathon project recommendations
+      4. Provide technical guidance and implementation suggestions
+      
+      Guidelines:
+      - Projects should be completable within 24-48 hours
+      - Match the developer's technical skill level
+      - Be innovative and engaging
+      - Solve real problems or create useful tools
+      - Include specific technical implementation details
+      
+      Always provide 3-5 concrete project ideas with:
+      - Clear project title and description
+      - Technical stack recommendations
+      - Implementation approach
+      - Difficulty level assessment
+      - Potential impact or use cases
+    
+    mcp_tools:
+      - github-official
+      - duckduckgo
+      - fetch
+    
+    parameters:
+      temperature: 0.7
+      max_tokens: 1500
+      
+  github_analyzer:
+    name: "GitHub Profile Analyzer"
+    description: "Specialized agent for analyzing GitHub profiles and repositories"
+    model: qwen3-small
+    instructions: |
+      You are a specialized GitHub profile analyzer.
+      
+      Your job is to:
+      1. Extract meaningful insights from GitHub profiles
+      2. Identify programming languages and technologies used
+      3. Assess experience level and project complexity
+      4. Understand coding patterns and preferences
+      5. Summarize findings for the hackathon recommender
+      
+      Focus on:
+      - Repository activity and recency
+      - Code complexity and quality indicators
+      - Collaboration patterns (forks, contributions)
+      - Technology stack preferences
+      - Project themes and domains
+    
+    mcp_tools:
+      - github-official
+    
+    parameters:
+      temperature: 0.3
+      max_tokens: 800
+
+# Global configuration
+config:
+  default_model: qwen3-small
+  max_concurrent_agents: 3
+  timeout_seconds: 30
+  
+  # Logging configuration
+  logging:
+    level: info
+    format: json
+    
+  # Rate limiting
+  rate_limits:
+    github_api: 5000  # requests per hour
+    default: 100      # requests per minute

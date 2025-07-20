@@ -1,0 +1,71 @@
+services:
+  agents:
+    image: hackathon-recommender/agents
+    build:
+      context: agent
+    ports:
+      - "7777:7777"
+    environment:
+      # point agents at the MCP gateway
+      - MCPGATEWAY_URL=mcp-gateway:8811
+    volumes:
+      # mount the agents configuration
+      - ./agents.yaml:/agents.yaml
+    models:
+      qwen3-small:
+        endpoint_var: MODEL_RUNNER_URL
+        model_var: MODEL_RUNNER_MODEL
+    depends_on:
+      - mcp-gateway
+
+  agents-ui:
+    image: hackathon-recommender/ui
+    build:
+      context: agent-ui
+    ports:
+      - "3003:3003"
+    environment:
+      - NODE_ENV=development
+      - NEXT_TELEMETRY_DISABLED=1
+      - PORT=3003
+      - AGENTS_URL=http://agents:7777
+    depends_on:
+      - agents
+
+  mcp-gateway:
+    # mcp-gateway secures your MCP servers
+    image: docker/mcp-gateway:latest
+    # use docker API socket to start MCP servers
+    use_api_socket: true
+    command:
+      # securely embed secrets into the gateway
+      - --secrets=/run/secrets/mcp_secret
+      # add any MCP servers you want to use
+      - --servers=github-official,duckduckgo,fetch
+      # add an interceptor to format GitHub user data
+      - --interceptor
+      - after:exec:cat | jq '.content[0].text = (.content[0].text | fromjson | map(select(. != null) | [(.login // ""), (.name // ""), (.public_repos // ""), (.followers // ""), (.following // ""), (.bio // "")] | @csv) | join("\n"))'
+    secrets:
+      - mcp_secret
+
+# Define available AI models
+models:
+  qwen3-small:
+    # Lightweight model for development
+    model: ai/qwen3:8B-Q4_0 # 4.44 GB
+    context_size: 15000 # 7 GB VRAM
+  
+  qwen3-medium:
+    # More capable model for production
+    model: ai/qwen3:14B-Q6_K # 11.28 GB
+    context_size: 15000 # 15 GB VRAM
+  
+  qwen2-5:
+    # Alternative model option
+    model: qwen2.5:latest
+    context_size: 8192
+
+# Mount the secrets file for MCP servers
+secrets:
+  mcp_secret:
+    file: ./.mcp.env
