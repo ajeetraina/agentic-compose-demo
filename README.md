@@ -60,6 +60,8 @@ cd agentic-compose-demo
 
 ### 2. Configure Secrets
 
+If the file doesn't exist, create a new one
+
 ```bash
 # Copy the environment template
 cp .mcp.env.example .mcp.env
