@@ -71,10 +71,7 @@ nano .mcp.env
 github.personal_access_token=XXX
 ```
 
-Add your GitHub Personal Access Token:
-```bash
-GITHUB_PERSONAL_ACCESS_TOKEN=ghp_your_token_here
-```
+
 
 ### 3. Launch the Application
 
