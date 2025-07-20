@@ -2,6 +2,13 @@
 
 import { useState } from 'react';
 
+const TrophyIcon = () => (
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="#FFA500">
+    <path d="M6 9H4.5a2.5 2.5 0 000 5H6M18 9h1.5a2.5 2.5 0 010 5H18M6 9v6h12V9M6 9h12M8 21h8M12 3v6"/>
+    <path d="M8 21V9M16 21V9"/>
+  </svg>
+);
+
 export default function Home() {
   const [username, setUsername] = useState('');
   const [loading, setLoading] = useState(false);
@@ -39,157 +46,138 @@ export default function Home() {
 
   return (
     <div style={{ 
-      fontFamily: 'Arial, sans-serif',
-      background: 'linear-gradient(135deg, #1e3a8a 0%, #7c3aed 50%, #3730a3 100%)',
-      minHeight: '100vh',
-      color: 'white',
-      padding: '2rem'
+      maxWidth: '800px', 
+      margin: '0 auto', 
+      padding: '40px 20px',
+      fontFamily: 'system-ui, -apple-system, sans-serif',
+      backgroundColor: '#f9f9f9',
+      minHeight: '100vh'
     }}>
       {/* Header */}
-      <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+      <div style={{ textAlign: 'center', marginBottom: '40px' }}>
         <div style={{ 
-          display: 'inline-block',
-          padding: '0.75rem 1.5rem',
-          background: '#f97316',
-          borderRadius: '2rem',
-          fontSize: '1.125rem',
-          fontWeight: 'bold',
-          marginBottom: '1rem'
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center',
+          marginBottom: '20px'
         }}>
-          🏆 AI Agents Hackathon Project Recommender
+          <TrophyIcon />
         </div>
-        <h1 style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>
-          Discover your perfect hackathon project!
+        <h1 style={{ 
+          fontSize: '28px', 
+          fontWeight: 'bold', 
+          margin: '0 0 8px 0',
+          color: '#333'
+        }}>
+          AI Agents Hackathon Recommender
         </h1>
-        <p style={{ color: '#d1d5db', marginBottom: '0.5rem' }}>
-          Analyzes GitHub profiles to recommend personalized projects that match your skills and interests.
-        </p>
-        <p style={{ color: '#60a5fa', fontSize: '0.875rem' }}>
-          Inspired by Microsoft AI Agents for Beginners - built with MCP servers & Docker Model Runner
+        <p style={{ 
+          color: '#666', 
+          margin: 0,
+          fontSize: '16px'
+        }}>
+          Get personalized hackathon project recommendations!
         </p>
       </div>
 
-      {/* Search Form */}
-      <div style={{ maxWidth: '32rem', margin: '0 auto 2rem auto' }}>
-        <div style={{ 
-          background: 'rgba(17, 24, 39, 0.8)', 
-          borderRadius: '8px', 
-          padding: '1.5rem' 
-        }}>
-          <div style={{ marginBottom: '1rem' }}>
-            <label style={{ display: 'block', fontWeight: '500', marginBottom: '0.5rem' }}>
-              🔍 Enter GitHub Username
-            </label>
-            <p style={{ color: '#9ca3af', fontSize: '0.875rem', marginBottom: '1rem' }}>
-              Enter any GitHub username to analyze their coding style and recommend projects.
-            </p>
-          </div>
-          
-          <form onSubmit={handleSubmit}>
+      {/* Input Section */}
+      <div style={{ 
+        backgroundColor: 'white',
+        borderRadius: '8px',
+        padding: '24px',
+        boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+        marginBottom: '24px'
+      }}>
+        <form onSubmit={handleSubmit}>
+          <div style={{ 
+            display: 'flex', 
+            gap: '10px'
+          }}>
             <input
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              placeholder="ajeetraina"
-              style={{ 
-                width: '100%',
-                padding: '0.75rem',
-                background: 'rgba(55, 65, 81, 1)',
-                border: '1px solid rgba(75, 85, 99, 1)',
-                borderRadius: '8px',
-                color: 'white',
-                marginBottom: '1rem',
-                fontSize: '16px'
+              placeholder="collabnix"
+              style={{
+                flex: 1,
+                padding: '12px 16px',
+                border: '2px solid #ddd',
+                borderRadius: '6px',
+                fontSize: '16px',
+                outline: 'none'
               }}
+              onFocus={(e) => e.target.style.borderColor = '#007bff'}
+              onBlur={(e) => e.target.style.borderColor = '#ddd'}
               disabled={loading}
             />
-            
             <button
               type="submit"
               disabled={loading || !username.trim()}
-              style={{ 
-                width: '100%',
-                background: 'linear-gradient(135deg, #ec4899, #ef4444)',
+              style={{
+                padding: '12px 24px',
+                backgroundColor: '#007bff',
                 color: 'white',
                 border: 'none',
-                padding: '0.75rem 1.5rem',
-                borderRadius: '8px',
-                cursor: loading ? 'not-allowed' : 'pointer',
-                fontWeight: '600',
+                borderRadius: '6px',
                 fontSize: '16px',
-                opacity: (loading || !username.trim()) ? 0.5 : 1
+                fontWeight: '500',
+                cursor: loading ? 'not-allowed' : 'pointer',
+                opacity: loading || !username.trim() ? 0.6 : 1
               }}
             >
-              {loading ? '🔄 Analyzing...' : '🚀 Generate Hackathon Recommendations'}
+              {loading ? 'Loading...' : 'Get Recommendations'}
             </button>
-          </form>
-
-          {/* Service Status */}
-          <div style={{ 
-            display: 'flex', 
-            gap: '0.5rem', 
-            marginTop: '1rem', 
-            fontSize: '0.75rem',
-            flexWrap: 'wrap'
-          }}>
-            <span style={{ background: '#16a34a', padding: '0.25rem 0.5rem', borderRadius: '0.25rem' }}>
-              🐙 GitHub MCP Server
-            </span>
-            <span style={{ background: '#16a34a', padding: '0.25rem 0.5rem', borderRadius: '0.25rem' }}>
-              🦆 DuckDuckGo Search  
-            </span>
-            <span style={{ background: '#16a34a', padding: '0.25rem 0.5rem', borderRadius: '0.25rem' }}>
-              🤖 AI Model Runner
-            </span>
           </div>
-        </div>
+        </form>
       </div>
 
       {/* Error Display */}
       {error && (
-        <div style={{ maxWidth: '64rem', margin: '0 auto 2rem auto' }}>
-          <div style={{ 
-            background: 'rgba(153, 27, 27, 0.8)',
-            border: '1px solid #dc2626',
-            borderRadius: '8px',
-            padding: '1rem'
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <span style={{ fontSize: '1.25rem', marginRight: '0.5rem' }}>❌</span>
-              <div>
-                <h3 style={{ fontWeight: '500', color: '#fca5a5', margin: 0 }}>Error</h3>
-                <p style={{ color: '#fecaca', margin: '0.5rem 0 0 0' }}>{error}</p>
-              </div>
-            </div>
-          </div>
+        <div style={{ 
+          backgroundColor: '#fee',
+          border: '1px solid #fcc',
+          borderRadius: '6px',
+          padding: '16px',
+          marginBottom: '24px',
+          color: '#c33'
+        }}>
+          <strong>Error:</strong> {error}
         </div>
       )}
 
       {/* Results */}
       {result && (
-        <div style={{ maxWidth: '64rem', margin: '0 auto' }}>
+        <div style={{ 
+          backgroundColor: 'white',
+          borderRadius: '8px',
+          padding: '24px',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+        }}>
           <div style={{ 
-            background: 'rgba(17, 24, 39, 0.8)',
-            borderRadius: '8px',
-            padding: '1.5rem',
+            display: 'flex', 
+            alignItems: 'center', 
+            marginBottom: '20px'
+          }}>
+            <TrophyIcon />
+            <span style={{ 
+              fontSize: '20px', 
+              fontWeight: '600',
+              marginLeft: '8px',
+              color: '#333'
+            }}>
+              AI Agents Hackathon Project Recommendations for {username}
+            </span>
+          </div>
+
+          <div style={{ 
             whiteSpace: 'pre-wrap',
-            fontFamily: 'monospace',
-            lineHeight: '1.5'
+            lineHeight: '1.6',
+            color: '#555'
           }}>
             {result}
           </div>
         </div>
       )}
-
-      {/* Footer */}
-      <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-        <div style={{ color: '#9ca3af', fontSize: '0.875rem' }}>
-          🔗 Built with MCP (Model Context Protocol)
-        </div>
-        <div style={{ color: '#6b7280', fontSize: '0.75rem', marginTop: '0.5rem' }}>
-          GitHub Analysis • Trend Research • AI Recommendations • Secure Infrastructure
-        </div>
-      </div>
     </div>
   );
 }
