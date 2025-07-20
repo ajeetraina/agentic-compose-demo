@@ -54,19 +54,15 @@ An intelligent system that analyzes GitHub profiles and generates personalized h
 ### 1. Clone & Setup
 
 ```bash
-git clone <your-repo-url>
-cd agentic-compose-demo
+git clone https://github.com/ajeetraina/ai-agents-hackathon-recommender
+cd ai-agents-hackathon-recommender
 ```
 
 ### 2. Configure Secrets
 
-If the file doesn't exist, create a new one
+Create a file .mcp.env and add your GitHub PAT
 
 ```bash
-# Copy the environment template
-cp .mcp.env.example .mcp.env
-
-# Edit with your actual credentials
 nano .mcp.env
 github.personal_access_token=XXX
 ```
@@ -124,59 +120,5 @@ curl -X POST http://localhost:7777/analyze \
   -d '{"username": "microsoft", "agent": "hackathon_recommender"}'
 ```
 
-## 🔒 Security Features
 
-- **Containerized Services**: Isolated Docker containers
-- **Secrets Management**: Secure credential handling
-- **Resource Limits**: CPU/memory constraints on MCP tools
-- **No Host Access**: Restricted filesystem access
-- **Signed Images**: Verified Docker images for MCP servers
-
-## 📊 Monitoring & Debugging
-
-### Check Service Status
-
-```bash
-# View all containers
-docker compose ps
-
-# Check specific service logs
-docker compose logs agents
-docker compose logs mcp-gateway
-
-# Monitor real-time logs
-docker compose logs -f
-```
-
-## 🤝 Contributing
-
-We welcome contributions! Please see our [Contributing Guide](docs/CONTRIBUTING.md) for details.
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- **Microsoft AI Agents for Beginners** - Inspiration and guidance
-- **Anthropic MCP** - Model Context Protocol framework
-- **Docker** - MCP Gateway and containerization
-- **Next.js Team** - React framework
-- **FastAPI** - Python web framework
-
-## 🏆 Showcase
-
-This project demonstrates:
-
-- ✅ **Real AI Integration** - Not just templates, actual intelligent analysis
-- ✅ **Modern Architecture** - Docker + MCP + Next.js + Python microservices
-- ✅ **Production Infrastructure** - Secure, scalable, maintainable design
-- ✅ **Excellent UX** - Beautiful interface with real functionality
-- ✅ **Open Source Best Practices** - Comprehensive documentation and tooling
-
-Perfect for:
-- 🚀 **Hackathons** - Showcase AI agents capabilities
-- 📚 **Learning** - Understanding modern AI application architecture  
-- 🛠️ **Production** - Base for real-world AI applications
-- 🎯 **Demos** - Impressive AI integration examples
 
