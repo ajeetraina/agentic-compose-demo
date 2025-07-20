@@ -8,7 +8,7 @@
 An intelligent system that analyzes GitHub profiles and generates personalized hackathon project recommendations using AI agents, Model Context Protocol (MCP), and real-time data integration.
 
 
-<img width="810" height="737" alt="image" src="https://github.com/user-attachments/assets/eecd6a1d-1d7f-4fd0-8771-7c0d6285b557" />
+<img width="818" height="695" alt="image" src="https://github.com/user-attachments/assets/d0f4ef56-6877-4cdc-8f01-c71ba853c8ea" />
 
 
 ## Features
