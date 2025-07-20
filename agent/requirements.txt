@@ -16,3 +16,4 @@ structlog==23.2.0
 
 # Async support - compatible with FastAPI
 anyio>=3.7.1,<4.0.0
+aiohttp
