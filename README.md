@@ -68,6 +68,7 @@ cp .mcp.env.example .mcp.env
 
 # Edit with your actual credentials
 nano .mcp.env
+github.personal_access_token=XXX
 ```
 
 Add your GitHub Personal Access Token:
