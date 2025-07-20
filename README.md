@@ -55,7 +55,7 @@ An intelligent system that analyzes GitHub profiles and generates personalized h
 
 ```bash
 git clone <your-repo-url>
-cd ai-agents-hackathon-recommender
+cd agentic-compose-demo
 ```
 
 ### 2. Configure Secrets
