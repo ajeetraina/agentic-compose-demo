@@ -1,4 +1,4 @@
-# 🏆 AI Agents Hackathon Project Recommender
+# AI Agents Hackathon Project Recommender
 
 > **Discover your perfect hackathon project with AI-powered GitHub profile analysis**
 
@@ -6,16 +6,16 @@ An intelligent system that analyzes GitHub profiles and generates personalized h
 
 ![AI Agents](https://img.shields.io/badge/AI-Agents-blue) ![Next.js](https://img.shields.io/badge/Next.js-13-black) ![Python](https://img.shields.io/badge/Python-3.11-blue) ![Docker](https://img.shields.io/badge/Docker-Compose-blue) ![MCP](https://img.shields.io/badge/MCP-Protocol-green)
 
-## 🌟 Features
+## Features
 
-- **🤖 AI-Powered Analysis**: Intelligent GitHub profile analysis using AI agents
-- **📊 Real-Time Data**: Live integration with GitHub API through MCP servers
-- **🎯 Personalized Recommendations**: Tailored hackathon projects based on skills and interests  
-- **🔒 Secure Architecture**: Containerized microservices with proper secrets management
-- **⚡ Modern Stack**: Next.js + Python + Docker + MCP integration
-- **🛠️ Production Ready**: Scalable architecture with comprehensive tooling
+- **AI-Powered Analysis**: Intelligent GitHub profile analysis using AI agents
+- **Real-Time Data**: Live integration with GitHub API through MCP servers
+- **Personalized Recommendations**: Tailored hackathon projects based on skills and interests  
+- **Secure Architecture**: Containerized microservices with proper secrets management
+- **Modern Stack**: Next.js + Python + Docker + MCP integration
+- **Production Ready**: Scalable architecture with comprehensive tooling
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
@@ -43,7 +43,7 @@ An intelligent system that analyzes GitHub profiles and generates personalized h
 └─────────────────┘
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
