@@ -17,7 +17,11 @@ services:
         model_var: MODEL_RUNNER_MODEL
     depends_on:
       - mcp-gateway
+    networks:
+      - ai-network
+    restart: unless-stopped
 
+  
   agents-ui:
     image: hackathon-recommender/ui
     build:
@@ -31,6 +35,9 @@ services:
       - AGENTS_URL=http://agents:7777
     depends_on:
       - agents
+    networks:
+      - ai-network
+    restart: unless-stopped
 
   mcp-gateway:
     # mcp-gateway secures your MCP servers
@@ -47,6 +54,13 @@ services:
       - after:exec:cat | jq '.content[0].text = (.content[0].text | fromjson | map(select(. != null) | [(.login // ""), (.name // ""), (.public_repos // ""), (.followers // ""), (.following // ""), (.bio // "")] | @csv) | join("\n"))'
     secrets:
       - mcp_secret
+    volumes:
+       - /var/run/docker.sock:/var/run/docker.sock
+       - ./data:/app/data:ro
+    networks:
+       - ai-network
+    restart: unless-stopped
+    
 
 # Define available AI models
 models:
@@ -69,3 +83,11 @@ models:
 secrets:
   mcp_secret:
     file: ./.mcp.env
+
+networks:
+  ai-network:
+     driver: bridge
+
+volumes:
+  model-cache:
+  agent-data:
